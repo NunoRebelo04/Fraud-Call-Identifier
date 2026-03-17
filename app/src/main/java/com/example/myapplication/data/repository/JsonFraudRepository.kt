@@ -35,7 +35,7 @@ class JsonFraudRepository(
     }
 
     override suspend fun saveSearch(info: PhoneNumberInfo) {
-        history.value = listOf(info) + history.value
+        history.value = (listOf(info) + history.value).take(10)
     }
 
     override fun observeHistory(): Flow<List<PhoneNumberInfo>> {

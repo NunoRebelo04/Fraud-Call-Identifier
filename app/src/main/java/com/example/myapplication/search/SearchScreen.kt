@@ -1,5 +1,6 @@
 package com.example.myapplication.search
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -66,6 +67,9 @@ fun formatRelativeDate(date: Instant): String {
     }
 }
 
+
+
+@SuppressLint("MissingPermission")
 @Composable
 fun SearchScreen(
     viewModel: SearchViewModel
