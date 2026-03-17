@@ -50,6 +50,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-text:1.7.5")
     implementation("androidx.compose.ui:ui-tooling-preview:1.7.5")
     implementation(libs.androidx.ui)
+    implementation(libs.core.ktx)
     debugImplementation("androidx.compose.ui:ui-tooling:1.7.5")
     implementation("androidx.compose.material:material:1.7.5")
     implementation("androidx.compose.material:material-icons-extended:1.7.5")
