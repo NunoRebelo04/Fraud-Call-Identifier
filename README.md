@@ -1,9 +1,13 @@
 Fraud Call Identifier
 
+
 Aplicação Android desenvilva na linguagem Kotlin que permite identificar chamadas fradulentas
 A app permite analisar números, classificar o seu nível de risco e bloquear chamadas
 
-Funcionalidades:
+
+
+
+.Funcionalidades
 
 -Pesquisa Manual de números de telefone;
 -Classificação de Risco;
@@ -13,7 +17,7 @@ Funcionalidades:
 -Base Local de números suspeitos
 
 
-Arquitetura:
+.Arquitetura
 
 A aplicação segue uma arquitertura baseada em MVM (Model-View-ViewModel), com separação de responsabilidades:
 
@@ -36,7 +40,10 @@ Data
 -Implementação concreta do repositório
 -Atualmente em memória (InMemoryFraudRepository)
 
-Lógica de negócio
+
+
+
+.Lógica de negócio
 
 A decisão de bloqueio é baseada em:
 -Nível de risco (SAFE, SUSPECT, SPAM)
@@ -45,7 +52,9 @@ A decisão de bloqueio é baseada em:
 shouldBlock=riskLevel + userSettings
 
 
-Tecnologias Utilizadas
+
+
+.Tecnologias Utilizadas
 -Kotlin
 -Jetpack Compose
 -MVVM
