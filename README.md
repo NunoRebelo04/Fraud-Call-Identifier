@@ -46,3 +46,8 @@ A decisão de bloqueio é baseada em:
 
 ```text
 shouldBlock = riskLevel + userSettings
+````
+
+## Testes
+
+Foram implementados unit tests para validar a lógica de negócio, nomeadamente o comportamento do `AnalyzePhoneNumberUseCase`, garantindo que diferentes combinações de risco e configurações produzem o resultado esperado.
