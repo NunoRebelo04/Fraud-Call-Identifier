@@ -17,6 +17,8 @@ A app permite analisar números, classificar o seu nível de risco e bloquear ch
 -Base Local de números suspeitos
 
 
+
+
 .Arquitetura
 
 A aplicação segue uma arquitertura baseada em MVM (Model-View-ViewModel), com separação de responsabilidades:
