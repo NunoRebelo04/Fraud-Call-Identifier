@@ -3,6 +3,9 @@ package com.example.myapplication.search
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.domain.model.PhoneNumberInfo
+import com.example.myapplication.domain.model.RiskLevel
+import com.example.myapplication.domain.model.UserCallSettings
+import com.example.myapplication.domain.repository.FraudRepository
 import com.example.myapplication.domain.usecase.AnalyzePhoneNumberUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,13 +14,11 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import repository.InMemoryFraudRepository
-import com.example.myapplication.domain.model.RiskLevel
-import com.example.myapplication.domain.model.UserCallSettings
 
-class SearchViewModel : ViewModel() {
+class SearchViewModel(
+    private val repository: FraudRepository
+) : ViewModel() {
 
-    private val repository = InMemoryFraudRepository()
     private val analyzePhoneNumberUseCase = AnalyzePhoneNumberUseCase(repository)
 
     private val _uiState = MutableStateFlow(SearchUiState())
@@ -84,7 +85,7 @@ class SearchViewModel : ViewModel() {
     }
 
     fun onBlockSuspectChanged(enabled: Boolean) {
-            viewModelScope.launch {
+        viewModelScope.launch {
             val newSettings = _uiState.value.settings.copy(
                 blockSuspectCalls = enabled
             )
@@ -105,7 +106,7 @@ class SearchViewModel : ViewModel() {
     }
 
     fun onBlockSpamChanged(enabled: Boolean) {
-            viewModelScope.launch {
+        viewModelScope.launch {
             val newSettings = _uiState.value.settings.copy(
                 blockSpamCalls = enabled
             )
@@ -122,7 +123,7 @@ class SearchViewModel : ViewModel() {
                     result = updatedResult
                 )
             }
-        }   
+        }
     }
 
     fun clearError() {

@@ -1,5 +1,6 @@
 package com.example.myapplication.search
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,14 +30,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.myapplication.domain.model.PhoneNumberInfo
 import com.example.myapplication.domain.model.RiskLevel
 import java.time.Duration
 import java.time.Instant
 import androidx.compose.ui.platform.LocalContext
 import com.example.myapplication.data.manager.FraudNotificationManager
-import kotlinx.coroutines.flow.collect
 
 
 fun formatRelativeDate(date: Instant): String {
@@ -53,11 +52,11 @@ fun formatRelativeDate(date: Instant): String {
 
 @Composable
 fun SearchScreen(
-    viewModel: SearchViewModel = viewModel()
+    viewModel: SearchViewModel
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val snackbarHostState = remember { SnackbarHostState() }
-    val context =LocalContext.current
+    val context = LocalContext.current
 
     LaunchedEffect(uiState.error) {
         uiState.error?.let {
@@ -66,12 +65,12 @@ fun SearchScreen(
         }
     }
 
-     LaunchedEffect(Unit) {
-        viewModel.blockedCallEvents.collect {info ->
+    LaunchedEffect(Unit) {
+        viewModel.blockedCallEvents.collect { info ->
             FraudNotificationManager.showBlockedCallNotification(
-                context=context,
-                number=info.number,
-                category=info.category
+                context = context,
+                number = info.number,
+                category = info.category
             )
         }
     }

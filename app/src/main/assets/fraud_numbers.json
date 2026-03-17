@@ -1,0 +1,23 @@
+[
+  {
+    "number": "918876579",
+    "riskLevel": "SPAM",
+    "reportsCount": 42,
+    "category": "Fraude Bancária",
+    "lastReportedAt": "2026-03-10T10:15:30Z"
+  },
+  {
+    "number": "939083472",
+    "riskLevel": "SUSPECT",
+    "reportsCount": 9,
+    "category": "Oferta Enganosa",
+    "lastReportedAt": "2026-03-14T10:15:30Z"
+  },
+  {
+    "number": "960144155",
+    "riskLevel": "SUSPECT",
+    "reportsCount": 23,
+    "category": "Telemarketing Agressivo",
+    "lastReportedAt": "2026-02-27T18:17:20Z"
+  }
+]

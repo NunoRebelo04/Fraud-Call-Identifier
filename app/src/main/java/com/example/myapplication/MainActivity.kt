@@ -3,8 +3,13 @@ package com.example.myapplication
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.myapplication.data.datasource.FraudJsonDataSource
 import com.example.myapplication.data.manager.FraudNotificationManager
+import com.example.myapplication.data.repository.JsonFraudRepository
 import com.example.myapplication.search.SearchScreen
+import com.example.myapplication.search.SearchViewModel
+import com.example.myapplication.search.SearchViewModelFactory
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,8 +21,13 @@ class MainActivity : ComponentActivity() {
             requestPermissions(arrayOf(android.Manifest.permission.POST_NOTIFICATIONS), 100)
         }
 
+        val dataSource= FraudJsonDataSource(applicationContext)
+        val repository= JsonFraudRepository(dataSource)
+        val factory= SearchViewModelFactory(repository)
+
         setContent {
-            SearchScreen()
+            val viewModel: SearchViewModel = viewModel(factory = factory)
+            SearchScreen(viewModel = viewModel)
         }
     }
 }
