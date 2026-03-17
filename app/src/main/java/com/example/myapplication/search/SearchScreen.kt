@@ -46,10 +46,11 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.myapplication.data.manager.FraudNotificationManager
 import com.example.myapplication.domain.model.PhoneNumberInfo
-import com.example.myapplication.domain.model.RiskLevel
 import com.example.myapplication.ui.extensions.backgroundColor
 import com.example.myapplication.ui.extensions.color
 import com.example.myapplication.ui.extensions.label
+import com.example.myapplication.ui.theme.TextPrimary
+import com.example.myapplication.ui.theme.TextSecondary
 import java.time.Duration
 import java.time.Instant
 
@@ -171,9 +172,28 @@ fun SearchScreen(
                         verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
                         Text(
-                            text = "Proteção automática",
+                            text = "Preferências",
                             style = MaterialTheme.typography.h6
                         )
+
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            verticalAlignment = Alignment.CenterVertically
+                        ){
+                            Switch(
+                                checked = uiState.settings.useDarkMode,
+                                onCheckedChange = viewModel::onDarkModeChanged
+                            )
+
+                            Spacer(modifier = Modifier.width(8.dp))
+
+                            Text(
+                                text = "Ativar Dark Mode",
+                                modifier = Modifier.weight(1f)
+                            )
+                        }
+
+                        Divider()
 
                         Row(
                             modifier = Modifier.fillMaxWidth(),
@@ -289,13 +309,15 @@ private fun ResultCard(info: PhoneNumberInfo) {
         ) {
             Text(
                 text = "Resultado da análise",
-                style = MaterialTheme.typography.overline
+                style = MaterialTheme.typography.overline,
+                color = TextSecondary
             )
 
             Text(
                 text = info.number,
                 style = MaterialTheme.typography.h5,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                color = TextPrimary
             )
 
             Box(
@@ -364,16 +386,20 @@ private fun InfoRow(
     label: String,
     value: String
 ) {
-    Column(
-        verticalArrangement = Arrangement.spacedBy(2.dp)
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween
     ) {
         Text(
             text = label,
-            style = MaterialTheme.typography.caption
+            style = MaterialTheme.typography.body2,
+            color = TextSecondary
         )
         Text(
             text = value,
-            style = MaterialTheme.typography.body1
+            style = MaterialTheme.typography.body2,
+            fontWeight = FontWeight.Medium,
+            color = TextPrimary
         )
     }
 }

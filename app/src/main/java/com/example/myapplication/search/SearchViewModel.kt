@@ -1,5 +1,6 @@
 package com.example.myapplication.search
 
+import androidx.compose.runtime.currentComposer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.domain.model.PhoneNumberInfo
@@ -147,6 +148,21 @@ class SearchViewModel(
             val settings = repository.getUserSettings()
             _uiState.update { current ->
                 current.copy(settings = settings)
+            }
+        }
+    }
+
+    fun onDarkModeChanged(enabled: Boolean)
+    {
+        viewModelScope.launch{
+            val newsettings= _uiState.value.settings.copy(
+                useDarkMode = enabled
+            )
+
+            repository.updateUserSettings(newsettings)
+
+            _uiState.update { current ->
+                current.copy(settings = newsettings)
             }
         }
     }

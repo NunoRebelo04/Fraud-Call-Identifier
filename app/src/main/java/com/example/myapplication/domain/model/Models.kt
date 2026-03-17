@@ -19,6 +19,7 @@ data class PhoneNumberInfo(
 
 data class UserCallSettings(
     val blockSpamCalls: Boolean = true,
-    val blockSuspectCalls: Boolean = false
+    val blockSuspectCalls: Boolean = false,
+    val useDarkMode: Boolean =false
 )
 
