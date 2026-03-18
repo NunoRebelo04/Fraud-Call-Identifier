@@ -128,7 +128,7 @@ Foram implementados unit tests para validar a lógica de negócio, nomeadamente 
 
 ## Decisões Técnicas
 
--Uso de MVVM + Clean Architecture para escalabilidade
+-Uso de MVVM
 -`Flow` em vez de LiveData para maior controlo reativo
 -JSON local para simplificação do challenge
 -Compose para UI moderna e declarativa
